@@ -1,0 +1,28 @@
+{
+  "name": "mr-fu-styler-file-button",
+  "description": "Plugin to stiling default input[type='file'].",
+  "main": "",
+  "keywords": [
+    "input[type='file']",
+    "input:file",
+    "stiling file button",
+    "styler input",
+    "styler file button",
+    "styler upload button"
+  ],
+  "authors": [
+    "Oleh Boiko"
+  ],
+  "license": "MIT",
+  "homepage": "http://mackrais.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "^1.9.1"
+  }
+}
