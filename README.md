@@ -4,6 +4,7 @@ Installation
 ------------
 Plugin to display bootstrap popup alert. Used default bootstrap class 'bb-alert'.
 
+test [test](docs/attributes/ajax-options.md#response-data)
 
 The preferred way to install this extension is through [bower](https://bower.io/).
 

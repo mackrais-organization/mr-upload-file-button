@@ -22,7 +22,7 @@ Base info current attribute
 This attribute is intended to specify the parameters jquery ajax request. 
 You can see a list of all available options [here](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings). 
 But there are also exceptions:
-- url - see attribute [uploadUrl]()
+- url - see attribute [uploadUrl](btn-class-title.md)
 - data - default format data see [Request](#request-data)
 - type - **only POST**
 - contentType - **false**
