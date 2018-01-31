@@ -96,7 +96,7 @@ if (typeof mrDebugMode === 'undefined') {
       'maxFilesUpload': 30,
       'preview': 'false',
       'previewImageUrls': [],
-      'requestParamDeletedIDs': 'deletedFileIDs',
+      'requestParamDeletedIds': 'deletedFileIDs',
       'requestParamFile': 'file',
       'requestParamSortingData': 'sortingData',
       'timeNotification': 5000,
@@ -347,14 +347,14 @@ if (typeof mrDebugMode === 'undefined') {
         if (!options.disabledDeletePreview) {
           $div.empty().append($remove);
         }
-        if (!options.disabledGallery) {
-          $div.append($preview);
-        }
-        if (!options.disableSortable && !isMobile) {
-          $div.append($dragIcon);
-        }
 
         if (file.type.match('image.*')) {
+          if (!options.disabledGallery) {
+            $div.append($preview);
+          }
+          if (!options.disableSortable && !isMobile) {
+            $div.append($dragIcon);
+          }
           var blob = b64toBlob(e.target.result, file.type);
           var blobUrl = URL.createObjectURL(blob);
           $img.addClass('mr-fu-preview-img').attr('src', blobUrl);
@@ -362,6 +362,10 @@ if (typeof mrDebugMode === 'undefined') {
           $div.addClass('mr-fu-preview-block');
           $div.append($img);
         } else {
+
+          if (!options.disableSortable && !isMobile) {
+            $div.append($dragIcon);
+          }
           $div.addClass('mr-fu-preview-block');
           $div.append($dragIcon);
           var typeSegments = file.name.split('.');
@@ -1056,7 +1060,7 @@ if (typeof mrDebugMode === 'undefined') {
     function getRequestData () {
       var formData = new FormData();
       var paramName = options.baseInput.attr('name') || options.requestParamFile || 'file';
-      var paramNameDeletedIDs = options.requestParamDeletedIDs || 'deletedFileIDs';
+      var paramNameDeletedIDs = options.requestParamDeletedIds || 'deletedFileIDs';
       var paramNameSortingData = options.requestParamSortingData || 'sortingData';
       if (mFiles.length > 1) {
         $.each(mFiles, function (i, f) {

@@ -82,7 +82,7 @@ Format request file data , where
 
 ```
 
-## Response dat
+## Response data
 Default response data include the following elements: 
 - Successful request
 ```
