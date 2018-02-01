@@ -29,22 +29,11 @@ to the require section of your `bower.json` file.
 - Mobile device gallery support. Needed [JqueryMobile](https://jquerymobile.com/)
 
 ## Documentation
-- [Attributes]()
-  - [DragEvent]()
-- [Events]()
+- [Attributes](docs/attributes.md)
+- [Events](docs/events.md)
+- [Functions](docs/functions.md)
 - [How to use]()
-- [Demo (examples)]()
-```js
-      MsgSuccess('Hello world!',5000,0)
-      MsgError('Hello world!',5000,0)
-      MsgWarning('Hello world!',5000,0)
-      MsgInfo('Hello world!',5000,0)
-```
-Where 5000 - it's time when hide
-      0 - it`s time when show
-## Result
-
-![Screenshot](https://archive.org/download/mr_bootstrap_bb_alert_mackrais/mr_bootstrap_bb_alert_mackrais.png)
+- [Demos (examples)]()
 
 
 ## License

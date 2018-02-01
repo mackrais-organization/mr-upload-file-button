@@ -116,4 +116,4 @@ Also you can create custom response used event [mr:fileUpload:ajaxDone]() see [d
 
 ## License
 
-**mr-upload-file-button** is released under the BSD 3-Clause License. See the bundled [`LICENSE.md`](LICENSE.md) for details.
+**mr-upload-file-button** is released under the BSD 3-Clause License. See the bundled [`LICENSE.md`](/LICENSE.md) for details.

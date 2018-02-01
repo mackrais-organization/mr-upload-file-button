@@ -17,15 +17,15 @@ if (typeof mrDebugMode === 'undefined') {
  * @TODO fix all translation check exist translate
  *
  * trigger events
- * 1 mr:fileUpload:getError [code,message, translations]
- * 2 mr:fileUpload:getWarning (code,message, translations)
+ * 1 mr:fileUpload:getError (code, message, typeError)
+ * 2 mr:fileUpload:getWarning (code,message)
  * 3 mr:fileUpload:destroy
  * 4 mr:fileUpload:refresh
- * 5 trigger('mr:fileUpload:ajaxBeforeSend', [jqXHR.status, PlainObject ])
- * 6 trigger('mr:fileUpload:ajaxDone', [data, textStatus, jqXHR ]);
- * 7 trigger('mr:fileUpload:ajaxError', [jqXHR, textStatus, errorThrown ])
- * 8 trigger('mr:fileUpload:ajaxComplete', [jqXHR, textStatus])
- * 9 trigger('mr:fileUpload:beforeDeletePreview', [$previewBlock, itemID, title, indexBlock, files ])
+ * 5 mr:fileUpload:ajaxBeforeSend (jqXHR, PlainObject)
+ * 6 mr:fileUpload:ajaxDone (data, textStatus, jqXHR )
+ * 7 mr:fileUpload:ajaxError (jqXHR, textStatus, errorThrown)
+ * 8 mr:fileUpload:ajaxComplete (jqXHR, textStatus)
+ * 9 mr:fileUpload:beforeDeletePreview ($previewBlock, itemID, title, indexBlock, files )
  */
 (function ($) {
   $.fn.mrUploadFileButton = function (params) {
@@ -175,8 +175,6 @@ if (typeof mrDebugMode === 'undefined') {
 
     // @TODO need check exist translation default language
     translations = translations[options.language] ? translations[options.language] : translations['en'];
-
-    console.log($(this).attr('id'),  ' ' ,options.language  , ' ', translations);
 
     options.baseInput = $(this);
     options.baseInput.hide();
@@ -479,7 +477,6 @@ if (typeof mrDebugMode === 'undefined') {
         var error = e.target.error;
         var message = translations.msgErrorUnknown || 'An error occurred with file {name}';
         if (error !== null) {
-          console.log(error.code);
           switch (error.code) {
             case error.ENCODING_ERR:
               message = translations.msgErrorEncoding || 'Encoding error file {name}!';
@@ -641,7 +638,7 @@ if (typeof mrDebugMode === 'undefined') {
               }
               options
                 .baseInput
-                .trigger('mr:fileUpload:ajaxBeforeSend', [jqXHR.status, PlainObject]);
+                .trigger('mr:fileUpload:ajaxBeforeSend', [jqXHR, PlainObject]);
             },
             'success': function (data, textStatus, jqXHR) {
               if (data) {
@@ -656,7 +653,7 @@ if (typeof mrDebugMode === 'undefined') {
                   }
                   options
                     .baseInput
-                    .trigger('mr:fileUpload:getWarning', [600, data.message ? data.message : 'Server error!', 'responseError']);
+                    .trigger('mr:fileUpload:getError', [600, data.message ? data.message : 'Server error!', 'responseError'], 'ajaxError');
                 }
                 options
                   .baseInput
@@ -1091,7 +1088,6 @@ if (typeof mrDebugMode === 'undefined') {
       } else if (sortData.length) {
         formData.append(paramNameSortingData, sortData[0]);
       }
-      console.log(sortData);
       return formData;
     }
 
