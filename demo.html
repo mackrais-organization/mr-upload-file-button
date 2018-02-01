@@ -103,7 +103,15 @@
 
     $('#demo2').mrUploadFileButton({
       'preview': true,
-      'disabledDragArea': true
+      'disabledDragArea': true,
+      'language': 'ru',
+      'translations': {
+        'ru': {
+          'notSelectedFile': 'Test'
+        }
+      }
+
+
     }).on('mr:fileUpload:getError',function(e, code, message, type){
    //   console.log(arguments);
     });

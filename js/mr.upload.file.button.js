@@ -14,20 +14,19 @@ if (typeof mrDebugMode === 'undefined') {
 
 /**
  * @TODO create docs for plugin
+ * @TODO fix all translation check exist translate
  *
  * trigger events
- * 1 mr:fileUpload:getError (code,message, type)
- * 2 mr:fileUpload:getWarning (code,message)
- * 3 change.mr:fileUpload:inputChange
- * 4 mr:fileUpload:destroy(code,message)
- * 5 mr:fileUpload:refresh (code,message)
- * 6 trigger('mr:fileUpload:ajaxBeforeSend', [jqXHR.status, PlainObject])
- * 7 trigger('mr:fileUpload:ajaxDone', [data, textStatus, jqXHR]);
- * 8 trigger('mr:fileUpload:ajaxError', [jqXHR, textStatus, errorThrown])
- * 9 trigger('mr:fileUpload:ajaxComplete', [jqXHR, textStatus])
- * 10 trigger('mr:fileUpload:beforeDeletePreview', [$previewBlock, itemID, title, indexBlock, files ])
+ * 1 mr:fileUpload:getError [code,message, translations]
+ * 2 mr:fileUpload:getWarning (code,message, translations)
+ * 3 mr:fileUpload:destroy
+ * 4 mr:fileUpload:refresh
+ * 5 trigger('mr:fileUpload:ajaxBeforeSend', [jqXHR.status, PlainObject ])
+ * 6 trigger('mr:fileUpload:ajaxDone', [data, textStatus, jqXHR ]);
+ * 7 trigger('mr:fileUpload:ajaxError', [jqXHR, textStatus, errorThrown ])
+ * 8 trigger('mr:fileUpload:ajaxComplete', [jqXHR, textStatus])
+ * 9 trigger('mr:fileUpload:beforeDeletePreview', [$previewBlock, itemID, title, indexBlock, files ])
  */
-
 (function ($) {
   $.fn.mrUploadFileButton = function (params) {
 
@@ -77,7 +76,7 @@ if (typeof mrDebugMode === 'undefined') {
 
     /**
      *
-     * @type {{ajaxOptions: {}, allowedTypes: string, btnClass: string, btnClassTitle: string, disableNotification: boolean, disablePreloader: boolean, disableProgressBar: boolean, disableSortable: boolean, disabledDeletePreview: boolean, disabledDragArea: boolean, disabledGallery: boolean, language: string, maxFileSize: number, maxFilesUpload: number, preview: string, previewImageUrls: Array, requestParamDeletedIDs: string, requestParamFile: string, requestParamSortingData: string, timeNotification: number, translations: {}, uploadBtnCssClass: string, uploadUrl: string}}
+     * @type {{ajaxOptions: {}, allowedTypes: string, btnClass: string, btnClassTitle: string, disableNotification: boolean, disablePreloader: boolean, disableProgressBar: boolean, disableSortable: boolean, disabledDeletePreview: boolean, disabledDragArea: boolean, disabledGallery: boolean, language: string, maxFileSize: number, maxFilesUpload: number, preview: string, previewImageUrls: Array, requestParamDeletedIDs: string, requestParamFiles: string, requestParamSortingData: string, timeNotification: number, translations: {}, uploadBtnCssClass: string, uploadUrl: string}}
      */
     var defaultOptions = {
       'ajaxOptions': {},
@@ -97,7 +96,7 @@ if (typeof mrDebugMode === 'undefined') {
       'preview': 'false',
       'previewImageUrls': [],
       'requestParamDeletedIds': 'deletedFileIDs',
-      'requestParamFile': 'file',
+      'requestParamFiles': 'file',
       'requestParamSortingData': 'sortingData',
       'timeNotification': 5000,
       'translations': {},
@@ -145,21 +144,21 @@ if (typeof mrDebugMode === 'undefined') {
         'unknownFileFormat': 'Невідомий формат файлу'
       },
       'ru': {
-        'NotSelectedFile': 'Не выбрано ни одного файла(ов).',
-        'TitleBtn': 'Выбрать файл ...',
-        'TextSelected': 'Выбрано {number} файл(ы)(ов)',
-        'UploadBtnText': 'Загрузить',
-        'MsgMaxUploadFiles': 'Максимальное количество файлов для загрузки: {number}!',
-        'MsgMaxUploadSize': 'Максимальный размер файла для загрузки: {number} MB!',
-        'MsgErrorEncoding': 'Ошибка кодирования файла {name}.',
-        'MsgErrorNotFoundFile': 'Файл {name} Не найдено',
-        'MsgErrorReadable': 'Файл {name} невозможно прочесть!',
-        'MsgErrorSecurity': 'Вопрос безопасности с файлом {name}!',
-        'MsgErrorUnknown': 'Возникла ошибка с файлом {name}!',
-        'MsgSuccessfulUploaded': 'Файл(ы) успешно загружено!',
-        'MsgNotAllowedFormatType': 'Тип файла {type} не поддерживается.',
-        'DragAreaText': 'Область для перемещения и загрузки файлов',
-        'UnknownFileFormat': 'Неизвестный формат файла'
+        'notSelectedFile': 'Файла(ов) не выбрано.',
+        'titleBtn': 'Выбрать файл ...',
+        'textSelected': 'Выбрано {number} файл(ы)(ов)',
+        'uploadBtnText': 'Загрузить',
+        'msgMaxUploadFiles': 'Максимальное количество файлов для загрузки: {number}!',
+        'msgMaxUploadSize': 'Максимальный размер файла для загрузки: {number} MB!',
+        'msgErrorEncoding': 'Ошибка кодирования файла {name}.',
+        'msgErrorNotFoundFile': 'Файл {name} Не найдено',
+        'msgErrorReadable': 'Файл {name} невозможно прочесть!',
+        'msgErrorSecurity': 'Вопрос безопасности с файлом {name}!',
+        'msgErrorUnknown': 'Возникла ошибка с файлом {name}!',
+        'msgSuccessfulUploaded': 'Файл(ы) успешно загружено!',
+        'msgNotAllowedFormatType': 'Тип файла {type} не поддерживается.',
+        'dragAreaText': 'Область для перемещения и загрузки файлов',
+        'unknownFileFormat': 'Неизвестный формат файла'
       }
     };
 
@@ -176,6 +175,8 @@ if (typeof mrDebugMode === 'undefined') {
 
     // @TODO need check exist translation default language
     translations = translations[options.language] ? translations[options.language] : translations['en'];
+
+    console.log($(this).attr('id'),  ' ' ,options.language  , ' ', translations);
 
     options.baseInput = $(this);
     options.baseInput.hide();
@@ -549,10 +550,14 @@ if (typeof mrDebugMode === 'undefined') {
           }
           mFiles.push(f);
           if (!options.baseBlock.find('.mr-fu-upload-btn').length) {
-            options.baseBlock.append('<button class="mr-fu-upload-btn ' + options.uploadBtnCssClass + '">' + translations.uploadBtnText + '</button>');
+            options.baseBlock.append('<button class="mr-fu-upload-btn ' + options.uploadBtnCssClass + '">' + (translations.uploadBtnText || "") + '</button>');
           }
           // Set default string
-          options.titleBlock.text(translations.textSelected.replace('{number}', mFiles.length));
+          options.titleBlock.text(
+            translations.textSelected
+              ? translations.textSelected.replace('{number}', mFiles.length)
+              : ''
+          );
           var reader = new FileReader();
           reader.onloadstart = onLoadFileStart;
           reader.onprogress = function (ev) { onProgressLoadFile(ev); };
@@ -1059,7 +1064,7 @@ if (typeof mrDebugMode === 'undefined') {
      */
     function getRequestData () {
       var formData = new FormData();
-      var paramName = options.baseInput.attr('name') || options.requestParamFile || 'file';
+      var paramName = options.baseInput.attr('name') || options.requestParamFiles || 'file';
       var paramNameDeletedIDs = options.requestParamDeletedIds || 'deletedFileIDs';
       var paramNameSortingData = options.requestParamSortingData || 'sortingData';
       if (mFiles.length > 1) {
@@ -1086,6 +1091,7 @@ if (typeof mrDebugMode === 'undefined') {
       } else if (sortData.length) {
         formData.append(paramNameSortingData, sortData[0]);
       }
+      console.log(sortData);
       return formData;
     }
 
@@ -1094,7 +1100,18 @@ if (typeof mrDebugMode === 'undefined') {
      * @type {getRequestData}
      * @returns {FormData}
      */
-    options.baseInput.__proto__.getRequestData = getRequestData;
+    options.baseInput.data({ 'getRequestData': getRequestData });
+
+    /**
+     * Get all translations
+     * @returns Object
+     */
+    options.baseInput.data({
+      'getTranslations': function () {
+        return translations;
+      }
+    });
+    //$('#demo2').data('getTranslations')()
     return options.baseInput;
   };
 })(jQuery);
