@@ -4,9 +4,10 @@
 - [Installation](#installation)
 - [Features](#features)
 - [How to use](#how-to-use)
-- [Attributes](docs/attributes.md)
-- [Events](docs/events.md)
-- [Functions](docs/functions.md)
+- **Documentation**
+  - [Attributes](docs/attributes.md)
+  - [Events](docs/events.md)
+  - [Functions](docs/functions.md)
 - [Demos (examples)]()
 - [License](LICENSE.md)
 
