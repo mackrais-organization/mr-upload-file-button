@@ -1,8 +1,8 @@
 # mr-upload-file-button
 
 ## Content
-- [Installation](docs/#installation)
-- [Features](docs/#features)
+- [Installation](#installation)
+- [Features](#features)
 - [How to use](#how-to-use)
 - [Attributes](docs/attributes.md)
 - [Events](docs/events.md)
