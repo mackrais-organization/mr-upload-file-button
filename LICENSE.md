@@ -1,4 +1,4 @@
-Copyright (c) 2014 - 2018, Oleh Boiko  
+Copyright (c) 2016 - 2018, Oleh Boiko  
 [mackrais.com ](http://mackrais.com).
 All rights reserved.  
 

@@ -6,7 +6,8 @@
 | ------------------------------------------------------------------------------------------|
 | [getRequestData](functions/get-request-data.md)                                                 | 
 | [getTranslations](functions/get-translations.md)                                               | 
-
+| [showNotification](functions/show-notification.md)                                                 | 
+| [showPreloader](functions/show-preloader.md)        
 
 ## License
 

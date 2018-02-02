@@ -15,6 +15,7 @@ if (typeof mrDebugMode === 'undefined') {
 /**
  * @TODO create docs for plugin
  * @TODO fix all translation check exist translate
+ * @TODO fixed css
  *
  * trigger events
  * 1 mr:fileUpload:getError (code, message, typeError)
@@ -25,7 +26,7 @@ if (typeof mrDebugMode === 'undefined') {
  * 6 mr:fileUpload:ajaxDone (data, textStatus, jqXHR )
  * 7 mr:fileUpload:ajaxError (jqXHR, textStatus, errorThrown)
  * 8 mr:fileUpload:ajaxComplete (jqXHR, textStatus)
- * 9 mr:fileUpload:beforeDeletePreview ($previewBlock, itemID, title, indexBlock, files )
+ * 9 mr:fileUpload:beforeDeletePreview (setting, $previewBlock, itemID, title, blockIndex, files )
  */
 (function ($) {
   $.fn.mrUploadFileButton = function (params) {
@@ -43,7 +44,7 @@ if (typeof mrDebugMode === 'undefined') {
     var deletedFileIDs = [];
 
     /**
-     * Array with ids deleted files
+     * Array with sortable data
      * @type {Array}
      */
     var sortData = [];
@@ -577,31 +578,55 @@ if (typeof mrDebugMode === 'undefined') {
         e.preventDefault();
         var $this = $(this);
         var title = decodeURI($this.data('file'));
-        options
+        var setting = {
+          'ajax': null,
+          'canDelete': true
+        };
+       options
           .baseInput
           .trigger('mr:fileUpload:beforeDeletePreview', [
+            setting,
             $this.parents('.mr-fu-preview-block:eq(0)'),
             $this.data('item-id'),
             title,
             $this.data('index'),
             mFiles
           ]);
-        if ($this.data('item-id')) {
-          deletedFileIDs.push($this.data('item-id'));
-        }
-        $this.parents('.mr-fu-preview-block:eq(0)').remove();
-        $.each(mFiles, function (i, f) {
-          if (f && f.name == title) {
-            mFiles.splice(i, 1);
+        if (setting.ajax !== null) {
+          $.when(setting.ajax).then(function () {
+            if(setting.canDelete){
+              deletePreview($this, title);
+            }
+          })
+        }else{
+          if(setting.canDelete){
+            deletePreview($this, title);
           }
-        });
-        if (!mFiles.length) {
-          options.baseBlock.find('.mr-fu-upload-btn').remove();
-          options.titleBlock.text(translations.notSelectedFile);
-        } else {
-          options.titleBlock.text(translations.textSelected.replace('{number}', mFiles.length));
         }
       });
+
+    /**
+     * Delete preview item
+     * @param $this
+     * @param title
+     */
+    function deletePreview ($this, title) {
+      if ($this.data('item-id')) {
+        deletedFileIDs.push($this.data('item-id'));
+      }
+      $this.parents('.mr-fu-preview-block:eq(0)').remove();
+      $.each(mFiles, function (i, f) {
+        if (f && f.name == title) {
+          mFiles.splice(i, 1);
+        }
+      });
+      if (!mFiles.length) {
+        options.baseBlock.find('.mr-fu-upload-btn').remove();
+        options.titleBlock.text(translations.notSelectedFile);
+      } else {
+        options.titleBlock.text(translations.textSelected.replace('{number}', mFiles.length));
+      }
+    }
 
     /**
      * SHOW PREVIEW WINDOW
@@ -1107,6 +1132,39 @@ if (typeof mrDebugMode === 'undefined') {
         return translations;
       }
     });
+
+    /**
+     * Show default alerts
+     */
+    options.baseInput.data({
+      'showNotification': function (type,message) {
+        switch (type){
+          case 'warning':{
+            return msgWarning(message);
+          }
+          case 'success':{
+            return msgSuccess(message);
+          }
+          case 'error':{
+            return msgError(message);
+          }
+        }
+      }
+    });
+
+    /**
+     * Show default preloader
+     */
+    options.baseInput.data({
+      'showPreloader': function (show) {
+       if(show){
+         options.baseBlock.siblings('.mr-fu-preview-area').find(selectors.preloader).show();
+       }else{
+         options.baseBlock.siblings('.mr-fu-preview-area').find(selectors.preloader).hide();
+       }
+      }
+    });
+
     //$('#demo2').data('getTranslations')()
     return options.baseInput;
   };

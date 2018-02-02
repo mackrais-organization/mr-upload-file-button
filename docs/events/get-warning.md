@@ -5,6 +5,7 @@
 
 | name            | type             |
 | -----------     | ---------------- |
+| event           | object           |
 | code            | integer          |
 | message         | string           |
 
@@ -21,7 +22,7 @@ This event called when plugin get warning. With this event, you can make custom 
 ## How to use
 
 ```js
-    $('your_selector').on('mr:fileUpload:getWarning',function(code, message, typeError){
+    $('your_selector').on('mr:fileUpload:getWarning',function(event, code, message, typeError){
          // ... your code 
     })
 ```

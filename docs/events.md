@@ -5,10 +5,10 @@
 | Name                                                                                      |
 | ------------------------------------------------------------------------------------------|
 | [mr:fileUpload:ajaxBeforeSend](events/ajax-before-send.md)                                                 | 
-| [mr:fileUpload:ajaxComplete](events/allowed-types.md)                                               | 
-| [mr:fileUpload:ajaxDone](events/btn-class.md)                                                       | 
-| [mr:fileUpload:ajaxError](events/btn-class-title.md)                                            | 
-| [mr:fileUpload:beforeDeletePreview](events/disable-notification.md)                                 | 
+| [mr:fileUpload:ajaxComplete](events/ajax-complete.md)                                               | 
+| [mr:fileUpload:ajaxDone](events/ajax-done.md)                                                       | 
+| [mr:fileUpload:ajaxError](events/ajax-error.md)                                            | 
+| [mr:fileUpload:beforeDeletePreview](events/before-delete-preview.md)                                 | 
 | [mr:fileUpload:destroy](events/destroy.md)                                       | 
 | [mr:fileUpload:getError](events/get-error.md)                                  |
 | [mr:fileUpload:getWarning](events/get-warning.md)                                         | 

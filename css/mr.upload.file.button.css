@@ -174,16 +174,15 @@
     text-align: left;
     width: 100%;
     display: block;
-    position: relative;
+    position: absolute;
 }
 
 .mr-fu-loader {
     display: none;
     background-color: rgba(0, 0, 0, 0.72);
     position: absolute;
-    height: 100%;
-    width: 100%;
     z-index: 65000;
+    width: 100%;
 }
 
 /*loader circle*/

@@ -1,10 +1,18 @@
 # mr-upload-file-button
 
-Installation
-------------
-Plugin to display bootstrap popup alert. Used default bootstrap class 'bb-alert'.
+## Content
+- [Installation](docs/#installation)
+- [Features](docs/#features)
+- [How to use](#how-to-use)
+- [Attributes](docs/attributes.md)
+- [Events](docs/events.md)
+- [Functions](docs/functions.md)
+- [Demos (examples)]()
+- [License](LICENSE.md)
 
-test [test](docs/attributes/ajax-options.md#response-data)
+## Installation
+
+Plugin to display bootstrap popup alert. Used default bootstrap class 'bb-alert'.
 
 The preferred way to install this extension is through [bower](https://bower.io/).
 
@@ -28,12 +36,19 @@ to the require section of your `bower.json` file.
 - Ajax upload
 - Mobile device gallery support. Needed [JqueryMobile](https://jquerymobile.com/)
 
-## Documentation
-- [Attributes](docs/attributes.md)
-- [Events](docs/events.md)
-- [Functions](docs/functions.md)
-- [How to use]()
-- [Demos (examples)]()
+
+## How to use
+
+```js
+    $('your_selector').mrUploadFileButton({});
+
+```
+
+Or use html data-attributes
+
+```html 
+    <input type="file" data-mr-upload-file-button="true" multiple />
+```
 
 
 ## License

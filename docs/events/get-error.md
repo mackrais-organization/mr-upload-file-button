@@ -5,6 +5,7 @@
 
 | name            | type             |
 | -----------     | ---------------- |
+| event           | object           |
 | code            | integer          |
 | message         | string           |
 | typeError       | string           |
@@ -25,7 +26,7 @@ This event called when plugin get error from client or ajax. With this event, yo
 ## How to use
 
 ```js
-    $('your_selector').on('mr:fileUpload:getError',function(code, message, typeError){
+    $('your_selector').on('mr:fileUpload:getError',function(event, code, message, typeError){
          // ... your code 
     })
 ```
