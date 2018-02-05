@@ -96,6 +96,118 @@
 
 </div>
 
+<script>
+
+  $(document).ready(function () {
+
+    $('#demo2').mrUploadFileButton({
+      'preview': true,
+      'disabledDragArea': true,
+      'language': 'ru',
+      'translations': {
+        'ru': {
+          'notSelectedFile': 'Test'
+        }
+      }
+
+    }).on('mr:fileUpload:getError', function (e, code, message, type) {
+      //   console.log(arguments);
+    });
+
+    $('#demo3').mrUploadFileButton({
+      'preview': true
+    });
+
+    $('#demo4').mrUploadFileButton({
+      'preview': true,
+      'uploadUrl': 'http://aff-platform.o-boyko.rtbadnt.com/uploads/ajax.php?sleep=1',
+      'maxFilesUpload':1,
+      'previewImageUrls': [
+        {
+          'fileName': 'apple-7.jpg',
+          'isImage': true,
+          'url': 'https://i2.wp.com/www.thebrandbite.com/wp-content/media/2015/07/apple-7.jpg',
+          'id': 1
+        },
+        {
+          'fileName': '2929036588_8f7a7490e1_b.jp',
+          'isImage': true,
+          'url': 'https://c1.staticflickr.com/4/3011/2929036588_8f7a7490e1_b.jpg',
+          'id': 2
+        },
+        {
+          'fileName': 'Eloquent_JavaScript.pdf',
+          'isImage': false,
+          'url': 'http://eloquentjavascript.net/Eloquent_JavaScript.pdf',
+          'id': 3
+        }
+      ]
+    });
+
+  })
+    .on('mr:fileUpload:ajaxBeforeSend', function (jqXHR, PlainObject) {
+      console.log('Before ajax');
+      console.log(jqXHR);
+
+    })
+    .on('mr:fileUpload:ajaxDone', function (data, textStatus, errorThrown) {
+      // console.log(jqXHR)
+      // console.log(textStatus)
+      // console.log(errorThrown)
+      console.log('ajaxDone');
+      console.log(arguments);
+
+    })
+    .on('mr:fileUpload:ajaxError', function (jqXHR, textStatus, errorThrown) {
+      // console.log(jqXHR)
+      // console.log(textStatus)
+      // console.log(errorThrown)
+      console.log('ajaxError');
+      console.log(arguments);
+
+    })
+    .on('mr:fileUpload:ajaxComplete', function (jqXHR, textStatus) {
+      console.log('ajaxComplete');
+      console.log(arguments);
+
+    })
+    .on('mr:fileUpload:getError', function (code, message, typeError) {
+      console.log('getError');
+      console.log(arguments);
+
+    })
+    .on('mr:fileUpload:getWarning', function (code,message) {
+      console.log('getWarning');
+      console.log(arguments);
+
+    })
+    .on('mr:fileUpload:beforeDeletePreview', function (e, setting) {
+      setting.ajax = $.ajax({
+        'url': 'http://aff-platform.o-boyko.rtbadnt.com/uploads/ajax.php?sleep=3',
+        'type': 'POST',
+        'data': {},
+        'dataType': 'JSON',
+        'success': function (result) {
+          if (result.status && result.status === 'ok') {
+            setting.canDelete = true;
+            $(e.target).data('showNotification')('success', result.message);
+          } else {
+            setting.canDelete = false;
+            $(e.target).data('showNotification')('error', result.message);
+          }
+        },
+        'beforeSend': function () {
+          $(e.target).data('showPreloader')(true);
+        },
+        'complete': function () {
+          $(e.target).data('showPreloader')(false);
+        },
+        'error': function (jqXHR, textStatus, errorThrown) {
+          $(e.target).data('showNotification')('error', '<strong>Error ' + jqXHR.status + ' : </strong>: ' + textStatus);
+        }
+      });
+    })
+</script>
 
 
 </body>
