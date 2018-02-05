@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Bootstrap BB Alerts (MackRais)</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mr.upload.file.button.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+    <script src="js/mr.upload.file.button.js"></script>
+
+</head>
+<body>
+
+
+<div class="container">
+
+
+    <h1 class="text-center">Demo styler file button (MackRais)</h1>
+    <hr>
+
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="form-group text-center">
+                <input type="file"
+                       data-request-param-deleted-ids="true"
+                       id="demo1"
+                       data-mr-upload-file-button="true"
+                       data-disabled-drag-area="true"
+                       multiple/>
+            </div>
+        </div>
+        <div class="col-md-5 text-center">
+            <code>
+                &lt;input
+                type="file"
+                id="demo1"
+                data-mr-upload-file-button="true"
+                data-disabled-drag-area="true"
+                multiple /> <br/>
+            </code>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="form-group text-center">
+                <input type="file" id="demo2" multiple>
+            </div>
+        </div>
+        <div class="col-md-5 text-center">
+            <code>
+                $('#demo2').mrUploadFileButton({
+                'preview': true,
+                'disabledDragArea': true
+                }); <br/>
+            </code>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="form-group text-center">
+                <input type="file" id="demo3" multiple>
+            </div>
+        </div>
+        <div class="col-md-5 text-center">
+            <code>
+                $('#demo3').mrUploadFileButton({'preview': true}); <br/>
+            </code>
+        </div>
+    </div>
+
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="form-group text-center">
+                <input type="file" id="demo4" multiple>
+            </div>
+        </div>
+        <div class="col-md-5 text-center">
+            <code>
+                $('#demo4').mrUploadFileButton({'preview': true}); <br/>
+            </code>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>
