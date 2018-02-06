@@ -2,213 +2,316 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Demo Bootstrap BB Alerts (MackRais)</title>
+    <title>MackRais - jquery plugin upload files</title>
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Comfortaa|Julius+Sans+One|Pompiere|Rajdhani"
+          rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mr.upload.file.button.css">
+    <link rel="stylesheet" href="docs/css/style.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <!--<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>-->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
     <script src="js/mr.upload.file.button.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
 </head>
 <body>
 
+<!-- Static navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://github.com/mackrais/mr-upload-file-button">
+                <svg style="fill: #fff;" aria-hidden="true" class="github-logo" height="45"
+                     version="1.1" viewBox="0 0 16 16" width="45">
+                    <path fill-rule="evenodd"
+                          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#description">Description</a></li>
+                <li><a href="#features">Features</a></li>
 
-<div class="container">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Documentation <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://github.com/mackrais/mr-upload-file-button/blob/master/docs/attributes.md">Attributes</a>
+                        </li>
+                        <li><a href="https://github.com/mackrais/mr-upload-file-button/blob/master/docs/events.md">Events</a>
+                        </li>
+                        <li><a href="https://github.com/mackrais/mr-upload-file-button/blob/master/docs/functions.md">Functions</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Examples <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
 
 
-    <h1 class="text-center">Demo styler file button (MackRais)</h1>
-    <hr>
+<div class="container" style="padding-top:50px">
+
+    <!--Home block-->
+    <h1 class="text-center pb-15">jQuery File Uploader
+        <a href="" style="text-decoration: none">
+            mr-upload-file-button
+        </a>
+    </h1>
+
+    <section class="row" id="home">
+        <div class="col-md-4 mb-15">
+            <div class="box-shadow box-body">
+                <h4>Installation</h4>
+                <code class="language-sh" data-lang="sh">npm <span class="nb">install </span>bootstrap</code>
+            </div>
+        </div>
+        <div class="col-md-4 mb-15 text-center">
+            <div class="box-shadow box-body">
+                <h4>Download</h4>
+                <i class="glyphicon glyphicon-download-alt hidden"></i>
+                <a href="https://github.com/mackrais/mr-upload-file-button/archive/master.zip"
+                   aria-label="Download mackrais/mr-upload-file-button on GitHub">
+                    <img src="http://translation-blog.com/wp-content/uploads/2013/12/ZIP.png" class="img-download">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 mb-15 text-center">
+            <div class="box-shadow box-body">
+                <h4 class="text-center">Github</h4>
+                <p>
+                    <a class="github-button"
+                       href="https://github.com/mackrais"
+                       data-size="large"
+                       data-show-count="true" aria-label="Follow @mackrais on GitHub">
+                        Follow @mackrais
+                    </a>
+                    <a class="github-button"
+                       href="https://github.com/mackrais/mr-upload-file-button"
+                       data-size="large" data-show-count="true"
+                       aria-label="Star mackrais/mr-upload-file-button on GitHub">Star
+                    </a>
+                </p>
+                <p>
+                    <a class="github-button"
+                       href="https://github.com/mackrais/mr-upload-file-button/fork"
+                       data-size="large" data-show-count="true"
+                       aria-label="Fork mackrais/mr-upload-file-button on GitHub">
+                        Fork
+                    </a>
+                    <a class="github-button"
+                       href="https://github.com/mackrais/mr-upload-file-button/subscription"
+                       data-size="large"
+                       data-show-count="true"
+                       aria-label="Watch mackrais/mr-upload-file-button on GitHub">
+                        Watch
+                    </a>
+                </p>
+                <p>
+                    <a class="github-button"
+                       href="https://github.com/mackrais/mr-upload-file-button/issues"
+                       data-size="large"
+                       data-show-count="true"
+                       aria-label="Issue mackrais/mr-upload-file-button on GitHub">
+                        Issue
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+    <!--Home block-->
+
+    <!---->
+
+    <section class="row ">
+
+        <div class="col-md-6 mb-15" id="description">
+            <h1 class="text-center">Description</h1>
+            <div class="box-shadow box-body" style="height: 240px">
+                Plugin for ajax uploading files. Development using the jQuery.
+                Very easy to use and easy to modify for any requirements.
+                The advantages of this plugin are that it is very fast, flexible and also free.
+                There is also a full documentation and many examples of how to use this plugin.
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-15" id="features">
+            <h1 class="text-center">Features</h1>
+            <div class="box-shadow box-body">
+                <ul>
+                    <li>
+                        Drag and Drop area.
+                    </li>
+                    <li>
+                        Easily customize to fit your needs.
+                    </li>
+                    <li>
+                        You can use both a separate widget or part of the form.
+
+                    </li>
+                    <li>
+                        Previews to images, (extensions to file)
+
+                    </li>
+                    <li>
+                        Own gallery to view images
+
+                    </li>
+                    <li>
+                        Support multi language
+
+                    </li>
+                    <li>
+                        Sortable thumbnail
+
+                    </li>
+                    <li>
+                        Remove thumbnail
+
+                    </li>
+                    <li>
+                        Ajax upload
+
+                    </li>
+                    <li>
+                        Mobile device gallery support. Needed jQueryMobile
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </section>
 
 
-    <div class="row">
-        <div class="col-md-7">
-            <div class="form-group text-center">
+    <section class="row">
+        <h1 class="text-center">Features</h1>
+        <div class="col-md-8 mb-15" id="">
+            <div class="form-group ">
                 <input type="file"
-                       data-request-param-deleted-ids="true"
                        id="demo1"
                        data-mr-upload-file-button="true"
                        data-disabled-drag-area="true"
                        multiple/>
             </div>
         </div>
-        <div class="col-md-5 text-center">
-            <code>
-                &lt;input
-                type="file"
-                id="demo1"
-                data-mr-upload-file-button="true"
-                data-disabled-drag-area="true"
-                multiple /> <br/>
-            </code>
-        </div>
-    </div>
 
-    <hr/>
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo1').mrUploadFileButton({
+    'data-disabled-drag-area': true
+});
+</code></pre>
 
-    <div class="row">
-        <div class="col-md-7">
-            <div class="form-group text-center">
-                <input type="file" id="demo2" multiple>
-            </div>
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo1"
+       data-mr-upload-file-button="true"
+       data-disabled-drag-area="true"
+       multiple/>
+</code>
+            </pre>
         </div>
-        <div class="col-md-5 text-center">
-            <code>
-                $('#demo2').mrUploadFileButton({
-                'preview': true,
-                'disabledDragArea': true
-                }); <br/>
-            </code>
-        </div>
-    </div>
-
-    <hr/>
-
-    <div class="row">
-        <div class="col-md-7">
-            <div class="form-group text-center">
-                <input type="file" id="demo3" multiple>
-            </div>
-        </div>
-        <div class="col-md-5 text-center">
-            <code>
-                $('#demo3').mrUploadFileButton({'preview': true}); <br/>
-            </code>
-        </div>
-    </div>
-
-
-    <hr/>
-
-    <div class="row">
-        <div class="col-md-7">
-            <div class="form-group text-center">
-                <input type="file" id="demo4" multiple>
-            </div>
-        </div>
-        <div class="col-md-5 text-center">
-            <code>
-                $('#demo4').mrUploadFileButton({'preview': true}); <br/>
-            </code>
-        </div>
-    </div>
+    </section>
 
 
 </div>
 
-<script>
 
+<script>
   $(document).ready(function () {
 
-    $('#demo2').mrUploadFileButton({
-      'preview': true,
-      'disabledDragArea': true,
-      'language': 'ru',
-      'translations': {
-        'ru': {
-          'notSelectedFile': 'Test'
-        }
-      }
-
-    }).on('mr:fileUpload:getError', function (e, code, message, type) {
-      //   console.log(arguments);
-    });
-
-    $('#demo3').mrUploadFileButton({
-      'preview': true
-    });
-
-    $('#demo4').mrUploadFileButton({
-      'preview': true,
-      'uploadUrl': 'http://aff-platform.o-boyko.rtbadnt.com/uploads/ajax.php?sleep=1',
-      'maxFilesUpload':1,
-      'previewImageUrls': [
-        {
-          'fileName': 'apple-7.jpg',
-          'isImage': true,
-          'url': 'https://i2.wp.com/www.thebrandbite.com/wp-content/media/2015/07/apple-7.jpg',
-          'id': 1
-        },
-        {
-          'fileName': '2929036588_8f7a7490e1_b.jp',
-          'isImage': true,
-          'url': 'https://c1.staticflickr.com/4/3011/2929036588_8f7a7490e1_b.jpg',
-          'id': 2
-        },
-        {
-          'fileName': 'Eloquent_JavaScript.pdf',
-          'isImage': false,
-          'url': 'http://eloquentjavascript.net/Eloquent_JavaScript.pdf',
-          'id': 3
-        }
-      ]
-    });
-
-  })
-    .on('mr:fileUpload:ajaxBeforeSend', function (jqXHR, PlainObject) {
-      console.log('Before ajax');
-      console.log(jqXHR);
-
-    })
-    .on('mr:fileUpload:ajaxDone', function (data, textStatus, errorThrown) {
-      // console.log(jqXHR)
-      // console.log(textStatus)
-      // console.log(errorThrown)
-      console.log('ajaxDone');
-      console.log(arguments);
-
-    })
-    .on('mr:fileUpload:ajaxError', function (jqXHR, textStatus, errorThrown) {
-      // console.log(jqXHR)
-      // console.log(textStatus)
-      // console.log(errorThrown)
-      console.log('ajaxError');
-      console.log(arguments);
-
-    })
-    .on('mr:fileUpload:ajaxComplete', function (jqXHR, textStatus) {
-      console.log('ajaxComplete');
-      console.log(arguments);
-
-    })
-    .on('mr:fileUpload:getError', function (code, message, typeError) {
-      console.log('getError');
-      console.log(arguments);
-
-    })
-    .on('mr:fileUpload:getWarning', function (code,message) {
-      console.log('getWarning');
-      console.log(arguments);
-
-    })
-    .on('mr:fileUpload:beforeDeletePreview', function (e, setting) {
-      setting.ajax = $.ajax({
-        'url': 'http://aff-platform.o-boyko.rtbadnt.com/uploads/ajax.php?sleep=3',
-        'type': 'POST',
-        'data': {},
-        'dataType': 'JSON',
-        'success': function (result) {
-          if (result.status && result.status === 'ok') {
-            setting.canDelete = true;
-            $(e.target).data('showNotification')('success', result.message);
-          } else {
-            setting.canDelete = false;
-            $(e.target).data('showNotification')('error', result.message);
-          }
-        },
-        'beforeSend': function () {
-          $(e.target).data('showPreloader')(true);
-        },
-        'complete': function () {
-          $(e.target).data('showPreloader')(false);
-        },
-        'error': function (jqXHR, textStatus, errorThrown) {
-          $(e.target).data('showNotification')('error', '<strong>Error ' + jqXHR.status + ' : </strong>: ' + textStatus);
-        }
-      });
-    })
+  });
 </script>
 
+
+<script>
+  $(document).ready(function () {
+    function setUrl (stringParams) {
+      if (history.pushState) {
+        var newurl = window.location.protocol + '//' + window.location.host + window.location.pathname + stringParams;
+        window.history.pushState({ path: newurl }, '', newurl);
+      }
+    }
+
+    function setActiveMenuItem () {
+      if (window.location.hash && window.location.hash !== '#') {
+        var selector = 'a[href="' + window.location.hash + '"]';
+        if ($(selector).length) {
+
+          if ($(selector).parents('.dropdown:eq(0)').length) {
+            $('#navbar .active').removeClass('active');
+            $(selector).parents('.dropdown:eq(0)').addClass('active');
+            $(selector).parents('li:eq(0)').addClass('active');
+          } else {
+            $('#navbar .active').removeClass('active');
+            $(selector).parents('li:eq(0)').addClass('active');
+          }
+        }
+      } else {
+        $('#navbar .active').removeClass('active');
+        $('a[href^=\'#home\']').parents('li:eq(0)').addClass('active');
+      }
+    }
+
+    $('a[href^=\'#\']').on('click', function (e) {
+      e.preventDefault();
+      var $this = $(this);
+
+      if ($this.parents('#navbar').length && $this.attr('href')) {
+        if ($this.parents('.dropdown:eq(0)').length) {
+          if (!$this.hasClass('dropdown-toggle')) {
+            $this.parents('#navbar').find('.active').removeClass('active');
+            $this.parents('.dropdown:eq(0)').addClass('active');
+            $this.parents('li:eq(0)').addClass('active');
+            setUrl($this.attr('href'));
+          }
+        } else {
+          $this.parents('#navbar').find('.active').removeClass('active');
+          $this.parents('li:eq(0)').addClass('active');
+          setUrl($this.attr('href'));
+        }
+      }
+      if ($($.attr(this, 'href')).length) {
+        $('html, body').animate({
+          scrollTop: $($.attr(this, 'href')).offset().top
+        }, 500);
+      }
+    });
+    setActiveMenuItem();
+  });
+</script>
 
 </body>
 </html>

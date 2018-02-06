@@ -299,13 +299,13 @@ if (typeof mrDebugMode === 'undefined') {
      * @param data
      */
     function preapareDataAttibutes (data) {
-      if (data.ajaxOptions) {
+      if (data && data.ajaxOptions) {
         delete data.ajaxOptions;
       }
-      if (data.previewImageUrls) {
+      if (data && data.previewImageUrls) {
         delete data.previewImageUrls;
       }
-      if (data.translations) {
+      if (data && data.translations) {
         delete data.translations;
       }
     }
