@@ -167,6 +167,8 @@ if (typeof mrDebugMode === 'undefined') {
     preapareDataAttibutes(htmlDataAttributes);
     var options = $.extend({}, defaultOptions, params, htmlDataAttributes);
 
+    console.log(htmlDataAttributes);
+
     if (typeof options.translations === 'object') {
       translations = $.extend(true, translations, options.translations);
     } else if (mrDebugMode) {

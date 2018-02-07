@@ -67,7 +67,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false">Examples <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
+                        <li><a href="#simple_example">Simple</a></li>
+                        <li><a href="#simple_preview_example">Simple with preview</a></li>
+                        <li><a href="#simple_preview_drag_and_drop_example">Simple with preview, drag and drop</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li><a href="#">Separated link</a></li>
@@ -213,14 +215,16 @@
 
     </section>
 
-
-    <section class="row">
-        <h1 class="text-center">Features</h1>
-        <div class="col-md-8 mb-15" id="">
+<!--Demo 1-->
+    <h1 class="text-center">Examples</h1>
+    <section class="row" id="simple_example">
+        <h3 class="text-center">Features</h3>
+        <div class="col-md-8 mb-15" >
             <div class="form-group ">
                 <input type="file"
                        id="demo1"
                        data-mr-upload-file-button="true"
+                       data-upload-url="docs/js/response.success.json"
                        data-disabled-drag-area="true"
                        multiple/>
             </div>
@@ -244,13 +248,90 @@ $('#demo1').mrUploadFileButton({
             </pre>
         </div>
     </section>
+<!--End Demo1-->
 
+
+    <!--Demo 2-->
+    <section class="row" id="simple_preview_example">
+        <h3 class="text-center">Simple with preview</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo2"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo1').mrUploadFileButton({
+      'preview': true,
+      'disabledDragArea': true
+});
+</code></pre>
+
+            <pre>
+<code class="html">
+&#60;input type="file"
+
+       id="demo2"
+       data-mr-upload-file-button="true"
+       data-preview="true"
+       data-disabled-drag-area="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--End Demo2-->
+
+    <!--Demo 3-->
+    <section class="row" id="simple_preview_drag_and_drop_example">
+        <h3 class="text-center">Simple with preview, drag and drop</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo3"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo1').mrUploadFileButton({
+      'preview': true,
+      'disabledDragArea': true
+});
+</code></pre>
+
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo2"
+       data-mr-upload-file-button="true"
+       data-preview="true"
+       data-disabled-drag-area="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--End Demo3-->
 
 </div>
 
 
 <script>
   $(document).ready(function () {
+
+    $('#demo2').mrUploadFileButton({
+      'preview': true,
+      'disabledDragArea': true
+    });
+
+    $('#demo3').mrUploadFileButton({
+      'preview': true
+    });
 
   });
 </script>

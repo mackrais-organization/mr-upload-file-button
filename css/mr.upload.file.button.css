@@ -71,9 +71,10 @@
     height: 20px;
     width: 20px;
     font-size: 23px;
-    line-height: 15px;
+    line-height: 0px;
     font-weight: bold;
     text-align: center;
+    padding: 10px 0px;
 }
 
 .mr-fu-preview-remove-img:before{
@@ -279,6 +280,7 @@
     left: 0;
     background: rgba(0, 0, 0, 0.7);
     display: block;
+    z-index: 65000;
 }
 
 .mr-fu-bg-view-preview img{
@@ -337,6 +339,7 @@
 .mr-fu-drag-area{
     border: 1px dotted #272727;
     padding: 10px 20px 40px 40px;
+    text-align: center;
 }
 
 .mr-fu-dragentered{
