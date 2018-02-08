@@ -77,20 +77,21 @@ if (typeof mrDebugMode === 'undefined') {
 
     /**
      *
-     * @type {{ajaxOptions: {}, allowedTypes: string, btnClass: string, btnClassTitle: string, disableNotification: boolean, disablePreloader: boolean, disableProgressBar: boolean, disableSortable: boolean, disabledDeletePreview: boolean, disabledDragArea: boolean, disabledGallery: boolean, language: string, maxFileSize: number, maxFilesUpload: number, preview: string, previewImageUrls: Array, requestParamDeletedIDs: string, requestParamFiles: string, requestParamSortingData: string, timeNotification: number, translations: {}, uploadBtnCssClass: string, uploadUrl: string}}
+     * @type {{ajaxOptions: {}, allowedTypes: string, btnClass: string, btnClassTitle: string, clickableAllArea: boolean, disableNotification: boolean, disablePreloader: boolean, disableProgressBar: boolean, disableSortable: boolean, disableDeletePreview: boolean, disableDragArea: boolean, disableGallery: boolean, language: string, maxFileSize: number, maxFilesUpload: number, preview: string, previewImageUrls: Array, requestParamDeletedIds: string, requestParamFiles: string, requestParamSortingData: string, timeNotification: number, translations: {}, uploadBtnCssClass: string, uploadUrl: string}}
      */
     var defaultOptions = {
       'ajaxOptions': {},
       'allowedTypes': '.*',
       'btnClass': 'mr-fu-file-style-btn',
       'btnClassTitle': 'mr-fu-file-style-title',
+      'clickableAllArea': false,
       'disableNotification': false,
       'disablePreloader': false,
       'disableProgressBar': false,
       'disableSortable': false,
-      'disabledDeletePreview': false,
-      'disabledDragArea': false,
-      'disabledGallery': false,
+      'disableDeletePreview': false,
+      'disableDragArea': false,
+      'disableGallery': false,
       'language': 'en',
       'maxFileSize': 1024,
       'maxFilesUpload': 30,
@@ -166,9 +167,6 @@ if (typeof mrDebugMode === 'undefined') {
     var htmlDataAttributes = $(this).data();
     preapareDataAttibutes(htmlDataAttributes);
     var options = $.extend({}, defaultOptions, params, htmlDataAttributes);
-
-    console.log(htmlDataAttributes);
-
     if (typeof options.translations === 'object') {
       translations = $.extend(true, translations, options.translations);
     } else if (mrDebugMode) {
@@ -198,9 +196,16 @@ if (typeof mrDebugMode === 'undefined') {
 
     options.baseBlock.addClass('mr-fu-file-style-base');
 
-    if (!options.disabledDragArea) {
+    if (!options.disableDragArea) {
       options.baseBlock.addClass('mr-fu-drag-area');
       options.baseBlock.append(options.dragAreaHeader);
+    }
+
+    if(options.clickableAllArea){
+      options.baseBlock.css('cursor','pointer');
+      options.baseBlock.on('click.mr:fileUpload:clickDragArea',function () {
+        options.baseInput.click();
+      })
     }
 
     options.baseBlock.append(options.btn);
@@ -210,21 +215,19 @@ if (typeof mrDebugMode === 'undefined') {
     options.baseBlock.insertBefore(options.baseInput);
 
     var $area = options.baseInput.siblings('.mr-fu-preview-area').length
-      ? $(input).siblings('.mr-fu-preview-area')
+      ? $(this).siblings('.mr-fu-preview-area')
       : $('<div class="mr-fu-preview-area"></div>');
 
     $area.prepend(templatePreloader());
 
     $area.insertBefore(options.baseInput);
-    $area.append('<div class="mr-fu-clear"></div>');
-    $('<div class="mr-fu-clear"></div>').insertAfter(options.baseInput);
 
     $('<div class="mr-fu-alert"></div>').insertBefore($area);
     options.notif_block = options.baseBlock.siblings('.mr-fu-alert');
 
     $(templateProgress()).insertAfter(options.titleBlock);
 
-    if (!options.disabledDragArea) {
+    if (!options.disableDragArea) {
       initDragAndDrop();
     }
 
@@ -346,12 +349,15 @@ if (typeof mrDebugMode === 'undefined') {
         $dragIcon.attr('data-index', index);
         $dragIcon.attr('data-file', encodeURI(file.name));
 
-        if (!options.disabledDeletePreview) {
+        if (!options.disableDeletePreview) {
           $div.empty().append($remove);
         }
 
         if (file.type.match('image.*')) {
-          if (!options.disabledGallery) {
+          if (!options.disableGallery) {
+            if(options.disableDeletePreview){
+              $preview.addClass('mr-fu-without-delete-preview');
+            }
             $div.append($preview);
           }
           if (!options.disableSortable && !isMobile) {
@@ -369,7 +375,6 @@ if (typeof mrDebugMode === 'undefined') {
             $div.append($dragIcon);
           }
           $div.addClass('mr-fu-preview-block');
-          $div.append($dragIcon);
           var typeSegments = file.name.split('.');
           if (typeSegments.length) {
             $div.append('<input ' +
@@ -415,11 +420,14 @@ if (typeof mrDebugMode === 'undefined') {
 
           $remove.attr('data-item-id', item.id);
 
-          if (!options.disabledDeletePreview) {
+          if (!options.disableDeletePreview) {
             $div.empty().append($remove);
           }
 
-          if (!options.disabledGallery && item.isImage) {
+          if (!options.disableGallery && item.isImage) {
+            if(options.disableDeletePreview){
+              $preview.addClass('mr-fu-without-delete-preview');
+            }
             $div.append($preview);
           }
 
@@ -433,7 +441,7 @@ if (typeof mrDebugMode === 'undefined') {
             $div.addClass('mr-fu-preview-block');
             $div.append($img);
           } else if (item.fileName) {
-            $div.addClass('mr-fu-preview-block');
+            $div.addClass('mr-fu-preview-block ');
             var typeSegments = item.fileName.split('.');
             if (typeSegments.length) {
               $div.append('<input ' +
@@ -445,7 +453,8 @@ if (typeof mrDebugMode === 'undefined') {
             }
           }
           // // Render thumbnail.
-          $area.append('<div class="mr-fu-preview-block" >' + $div.html() + '</div>');
+          var cssClass = !item.isImage ? 'mr-fu-file-block' : '';
+          $area.append('<div class="mr-fu-preview-block ' + cssClass + '">' + $div.html() + '</div>');
         });
       }
 
@@ -523,7 +532,12 @@ if (typeof mrDebugMode === 'undefined') {
         for (var i = 0, f; f = files[i]; i++) {
 
           if (!validateType(f.type)) {
-            msgWarning(translations.msgNotAllowedFormatType.replace('{type}', f.type));
+            if (!options.disableNotification) {
+              msgWarning(translations.msgNotAllowedFormatType.replace('{type}', f.type));
+            }
+            options
+              .baseInput
+              .trigger('mr:fileUpload:getWarning', [3, translations.msgNotAllowedFormatType.replace('{type}', f.type)]);
             return;
           }
 
@@ -651,6 +665,7 @@ if (typeof mrDebugMode === 'undefined') {
       .off('click.upload.mr_style')
       .on('click.upload.mr_style', '.mr-fu-upload-btn', function (e) {
         e.preventDefault();
+        e.stopPropagation();
         if (mFiles.length) {
           prepareRequestSortingData();
           var ajaxParams = {
@@ -915,6 +930,7 @@ if (typeof mrDebugMode === 'undefined') {
           }
           e.dataTransfer.effectAllowed = 'move';
           e.dataTransfer.setData('text/html', this.innerHTML);
+
           dragSrcEl_ = this;
           // this/e.target is the source node.
           $(this).addClass('moving');
@@ -945,7 +961,11 @@ if (typeof mrDebugMode === 'undefined') {
           // Don't do anything if we're dropping on the same box we're dragging.
           if (dragSrcEl_ !== this) {
             dragSrcEl_.innerHTML = this.innerHTML;
+            var newCssClass = $(this).attr('class');
+            var oldCssClass = $(dragSrcEl_).attr('class');
             this.innerHTML = e.dataTransfer.getData('text/html');
+            $(this).attr('class',oldCssClass);
+            $(dragSrcEl_).attr('class',newCssClass);
           }
           // Sort files array
           var sortArr = [];
@@ -1173,5 +1193,7 @@ if (typeof mrDebugMode === 'undefined') {
 })(jQuery);
 
 $(document).ready(function () {
-  $('[data-mr-upload-file-button="true"]').mrUploadFileButton();
+  $('[data-mr-upload-file-button="true"]').each(function (i, item) {
+    $(item).mrUploadFileButton({})
+  })
 });

@@ -30,8 +30,9 @@
 
 .mr-fu-preview-block {
     margin: 10px;
-    display: block;
-    float: left;
+    display: inline-block;;
+
+    /*float: left;*/
     position: relative;
 }
 
@@ -59,6 +60,10 @@
     right: 10px;
 }
 
+.mr-fu-file-block{
+    top:6px;
+}
+
 .mr-fu-preview-remove-img {
     color: #C00E0E;
     background: #fff;
@@ -75,6 +80,11 @@
     font-weight: bold;
     text-align: center;
     padding: 10px 0px;
+}
+
+.mr-fu-view-preview-btn.mr-fu-without-delete-preview {
+    top: -10px;
+    right: -5px;
 }
 
 .mr-fu-preview-remove-img:before{
@@ -175,7 +185,6 @@
     text-align: left;
     width: 100%;
     display: block;
-    position: absolute;
 }
 
 .mr-fu-loader {
@@ -183,7 +192,15 @@
     background-color: rgba(0, 0, 0, 0.72);
     position: absolute;
     z-index: 65000;
-    width: 100%;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    min-height: 20vh;
+}
+
+.mr-fu-file-style-title{
+    line-height: 30px;
 }
 
 /*loader circle*/

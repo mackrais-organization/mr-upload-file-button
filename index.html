@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mr.upload.file.button.css">
     <link rel="stylesheet" href="docs/css/style.css">
+    <link rel="stylesheet" href="docs/css/mr.preloader.css">
+    <link rel="stylesheet" href="https://mackrais.github.io/mr-bootstrap-bb-alert/css/mr.bootstrap.bb.alert.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <!-- Latest compiled and minified JavaScript -->
@@ -16,6 +18,7 @@
             crossorigin="anonymous"></script>
     <script src="js/mr.upload.file.button.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://mackrais.github.io/mr-bootstrap-bb-alert/js/mr.bootstrap.bb.alert.js"></script>
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
@@ -24,6 +27,23 @@
 
 </head>
 <body>
+
+
+<div id="loading" style="display: none;">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+            <div class="object" id="object_big"></div>
+        </div>
+    </div>
+</div>
 
 <!-- Static navbar -->
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -70,10 +90,20 @@
                         <li><a href="#simple_example">Simple</a></li>
                         <li><a href="#simple_preview_example">Simple with preview</a></li>
                         <li><a href="#simple_preview_drag_and_drop_example">Simple with preview, drag and drop</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
+                        <li><a href="#just_drag_and_drop_example">Just drag and drop</a></li>
+                        <li><a href="#only_image_example">Only images</a></li>
+                        <li><a href="#custom_notification_example">Custom notification</a></li>
+                        <li><a href="#custom_preloader_example">Custom preloader</a></li>
+                        <li><a href="#disabled_progressbar_example">Disabled progress bar</a></li>
+                        <li><a href="#disabled_sortable_example">Disabled sortable</a></li>
+                        <li><a href="#disabled_delete_preview_example">Disabled delete preview</a></li>
+                        <li><a href="#disabled_gallery_example">Disabled gallery</a></li>
+                        <li><a href="#disabled_all_action_preview_example">Disabled all actions preview</a></li>
+                        <li><a href="#change_language_example">Change language</a></li>
+                        <li><a href="#max_file_size_example">Set maximal size file</a></li>
+                        <li><a href="#max_files_upload_example">Set maximal upload files</a></li>
+                        <li><a href="#initialization_with_existing_preview_files_example">Initialization with existing preview files</a></li>
+                        <li><a href="#use_in_custom_form_example">Use in custom form</a></li>
                     </ul>
                 </li>
             </ul>
@@ -224,8 +254,7 @@
                 <input type="file"
                        id="demo1"
                        data-mr-upload-file-button="true"
-                       data-upload-url="docs/js/response.success.json"
-                       data-disabled-drag-area="true"
+                       data-disable-drag-area="true"
                        multiple/>
             </div>
         </div>
@@ -233,16 +262,16 @@
         <div class="col-md-4">
 <pre><code class="javascript">
 $('#demo1').mrUploadFileButton({
-    'data-disabled-drag-area': true
+    'disableDragArea': true
 });
 </code></pre>
-
+            OR
             <pre>
 <code class="html">
 &#60;input type="file"
        id="demo1"
        data-mr-upload-file-button="true"
-       data-disabled-drag-area="true"
+       data-disable-drag-area="true"
        multiple/>
 </code>
             </pre>
@@ -251,7 +280,7 @@ $('#demo1').mrUploadFileButton({
 <!--End Demo1-->
 
 
-    <!--Demo 2-->
+    <!--=======================================================================-->
     <section class="row" id="simple_preview_example">
         <h3 class="text-center">Simple with preview</h3>
         <div class="col-md-8 mb-15" >
@@ -264,26 +293,25 @@ $('#demo1').mrUploadFileButton({
 
         <div class="col-md-4">
 <pre><code class="javascript">
-$('#demo1').mrUploadFileButton({
+$('#demo2').mrUploadFileButton({
       'preview': true,
-      'disabledDragArea': true
+      'disableDragArea': true
 });
 </code></pre>
-
+            OR
             <pre>
 <code class="html">
 &#60;input type="file"
-
        id="demo2"
        data-mr-upload-file-button="true"
        data-preview="true"
-       data-disabled-drag-area="true"
+       data-disable-drag-area="true"
        multiple/>
 </code>
             </pre>
         </div>
     </section>
-    <!--End Demo2-->
+    <!--=======================================================================-->
 
     <!--Demo 3-->
     <section class="row" id="simple_preview_drag_and_drop_example">
@@ -298,25 +326,608 @@ $('#demo1').mrUploadFileButton({
 
         <div class="col-md-4">
 <pre><code class="javascript">
-$('#demo1').mrUploadFileButton({
-      'preview': true,
-      'disabledDragArea': true
+$('#demo3').mrUploadFileButton({
+      'preview': true
 });
 </code></pre>
-
+            OR
             <pre>
 <code class="html">
 &#60;input type="file"
-       id="demo2"
+       id="demo3"
        data-mr-upload-file-button="true"
        data-preview="true"
-       data-disabled-drag-area="true"
        multiple/>
 </code>
             </pre>
         </div>
     </section>
     <!--End Demo3-->
+
+    <!--=======================================================================-->
+    <section class="row" id="just_drag_and_drop_example">
+        <h3 class="text-center">Just drag and drop</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo4"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo4').mrUploadFileButton({
+      'preview': true,
+      'btnClass': 'hidden' // css class .hidden{ display:none }
+});
+</code></pre>
+OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo4"
+       data-mr-upload-file-button="true"
+       data-preview="true"
+       data-btn-class="hidden"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="only_image_example">
+        <h3 class="text-center">Only images</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo5"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo5').mrUploadFileButton({
+      'preview': true,
+      'allowedTypes': 'image/*' // only image
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo5"
+       data-mr-upload-file-button="true"
+       data-preview="true"
+       data-allowed-types="image/*"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="custom_notification_example">
+        <h3 class="text-center">Custom notification</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo6"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo6').mrUploadFileButton({
+  'preview': true,
+  'disableNotification': true, // disabled default notification
+  'allowedTypes': 'image/*' // only image
+})
+ .on('mr:fileUpload:getError',function(event, code, message, typeError){
+    if(typeError !== 'ajaxError'){
+      MsgError(message,5000,0)
+    }
+  })
+  .on('mr:fileUpload:getWarning',function(event, code, message){
+    MsgWarning(message,5000,0)
+  })
+  .on('mr:fileUpload:ajaxDone', function (data, textStatus, errorThrown) {
+    if(data && data.status === 'ok'){
+      MsgSuccess(data && data.message ? data.message : 'Successful uploaded',5000,0)
+    else{
+      MsgError(data && data.message ? data.message : 'An error occurred!',5000,0)
+    }
+  })
+  .on('mr:fileUpload:ajaxError', function (event, jqXHR, textStatus, errorThrown) {
+    MsgError('<strong>Error ' + jqXHR.status + ' : </strong>: ' + textStatus,5000,0)
+   })
+</code></pre>
+
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+
+    <!--=======================================================================-->
+    <section class="row" id="custom_preloader_example">
+        <h3 class="text-center">Custom preloader</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo7"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo7').mrUploadFileButton({
+  'preview': true,
+  'disablePreloader': true // disabled default preloader
+})
+  .on('mr:fileUpload:ajaxBeforeSend', function (event, jqXHR, PlainObject) {
+    $('#loading').show();
+   })
+  .on('mr:fileUpload:ajaxComplete', function (event, jqXHR, textStatus) {
+    $('#loading').hide();
+  });
+</code></pre>
+
+        </div>
+    </section>
+
+    <!--=======================================================================-->
+    <section class="row" id="disabled_progressbar_example">
+        <h3 class="text-center">Disabled progress bar</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo8"
+                       data-preview="true"
+                       data-mr-upload-file-button="true"
+                       data-disable-progress-bar="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo8').mrUploadFileButton({
+  'disableProgressBar': true,
+  'preview': true
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo8"
+       data-mr-upload-file-button="true"
+       data-disable-progress-bar="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="disabled_sortable_example">
+        <h3 class="text-center">Disabled sortable</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo9"
+                       data-preview="true"
+                       data-mr-upload-file-button="true"
+                       data-disable-sortable="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo9').mrUploadFileButton({
+  'preview': true,
+  'disableSortable': true
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo9"
+       data-mr-upload-file-button="true"
+       data-disable-sortable="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+
+    <!--=======================================================================-->
+    <section class="row" id="disabled_delete_preview_example">
+        <h3 class="text-center">Disabled delete preview</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo10"
+                       data-preview="true"
+                       data-mr-upload-file-button="true"
+                       data-disable-delete-preview="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo10').mrUploadFileButton({
+  'preview': true,
+  'disableDeletePreview': true
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo10"
+       data-mr-upload-file-button="true"
+       data-disable-delete-preview="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="disabled_gallery_example">
+        <h3 class="text-center">Disabled gallery</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo11"
+                       data-preview="true"
+                       data-mr-upload-file-button="true"
+                       data-disable-gallery="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo11').mrUploadFileButton({
+  'preview': true,
+  'disableGallery': true
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo11"
+       data-mr-upload-file-button="true"
+       data-disable-gallery="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="disabled_all_action_preview_example">
+        <h3 class="text-center">Disabled all actions preview</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo12"
+                       data-preview="true"
+                       data-mr-upload-file-button="true"
+                       data-disable-gallery="true"
+                       data-disable-delete-preview="true"
+                       data-disable-sortable="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo11').mrUploadFileButton({
+  'preview': true,
+  'disableGallery': true,
+  'disableDeletePreview': true,
+  'disableDortable': true,
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo11"
+       data-preview="true"
+       data-mr-upload-file-button="true"
+       data-disable-gallery="true"
+       data-disable-delete-preview="true"
+       data-disable-sortable="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="change_language_example">
+        <h3 class="text-center">Change language</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo13"
+                       data-preview="true"
+                       data-language="uk"
+                       data-mr-upload-file-button="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo13').mrUploadFileButton({
+  'preview': true,
+  'language': 'uk' // set Ukrainian language
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo13"
+       data-preview="true"
+       data-language="uk"
+       data-mr-upload-file-button="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+
+
+    <!--=======================================================================-->
+    <section class="row" id="max_file_size_example">
+        <h3 class="text-center">Set maximal size file</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo14"
+                       data-preview="true"
+                       data-max-file-size="0.1"
+                       data-mr-upload-file-button="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo14').mrUploadFileButton({
+  'preview': true,
+  'maxFileSize': 0.1 // 0.1 ≈ 100 kb
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo14"
+       data-preview="true"
+       data-max-file-size="0.1"
+       data-mr-upload-file-button="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="max_files_upload_example">
+        <h3 class="text-center">Set maximal upload files</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo15"
+                       data-preview="true"
+                       data-max-files-upload="4"
+                       data-mr-upload-file-button="true"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo15').mrUploadFileButton({
+  'preview': true,
+  'maxFilesUpload': 4
+});
+</code></pre>
+            OR
+            <pre>
+<code class="html">
+&#60;input type="file"
+       id="demo15"
+       data-preview="true"
+       data-max-files-upload="4"
+       data-mr-upload-file-button="true"
+       multiple/>
+</code>
+            </pre>
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+    <!--=======================================================================-->
+    <section class="row" id="initialization_with_existing_preview_files_example">
+        <h3 class="text-center">Initialization with existing preview files</h3>
+        <div class="col-md-8 mb-15" >
+            <div class="form-group ">
+                <input type="file"
+                       id="demo16"
+                       multiple/>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+<pre><code class="javascript">
+$('#demo16').mrUploadFileButton({
+  'preview': true,
+  'uploadUrl': 'your url',
+  'previewImageUrls': [
+    {
+      'fileName': 'apple-7.jpg',
+      'isImage': true,
+      'url': 'https://i2.wp.com/www.thebrandbite.com/wp-content/media/2015/07/apple-7.jpg',
+      'id': 1
+    },
+    {
+      'fileName': '2929036588_8f7a7490e1_b.jp',
+      'isImage': true,
+      'url': 'https://c1.staticflickr.com/4/3011/2929036588_8f7a7490e1_b.jpg',
+      'id': 2
+    },
+    {
+      'fileName': 'Eloquent_JavaScript.pdf',
+      'isImage': false,
+      'url': 'http://eloquentjavascript.net/Eloquent_JavaScript.pdf',
+      'id': 3
+    }
+   ]
+});
+</code></pre>
+
+        </div>
+    </section>
+    <!--=======================================================================-->
+
+
+    <!--=======================================================================-->
+    <section class="row" id="use_in_custom_form_example">
+        <h3 class="text-center">Use in custom form</h3>
+        <form action="http://example.com/upload.php" id="example_edit_album_form"  enctype="multipart/form-data">
+            <div class="col-md-12 ">
+                <div class="form-group ">
+                    <input type="text"
+                           value="My first album"
+                           name="title"
+                           class="form-control"
+                           placeholder="Enter album title">
+                </div>
+            </div>
+
+            <div class="col-md-12 ">
+                <div class="form-group ">
+                    <textarea name="description" class="form-control" placeholder="Enter album description"></textarea>
+                </div>
+            </div>
+
+            <div class="col-md-12 mb-15" >
+                <div class="form-group ">
+                    <input type="file"
+                           id="demo17"
+                           multiple/>
+                </div>
+
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+<pre><code class="javascript">
+$('#demo17').mrUploadFileButton({
+  'preview': true,
+  'uploadBtnCssClass': 'hidden',// css class .hidden{ display:none }
+  'clickableAllArea': true, // only use when you hide `select button` (for mobile device)
+  'requestParamDeletedIds': 'myDeletedFileID',
+  'requestParamFiles': 'myFiles',
+  'requestParamSortingData': 'mySortingData',
+  'previewImageUrls': [
+   {
+      'fileName': 'apple-7.jpg',
+      'isImage': true,
+      'url': 'https://i2.wp.com/www.thebrandbite.com/wp-content/media/2015/07/apple-7.jpg',
+      'id': 1
+    },
+   {
+      'fileName': '2929036588_8f7a7490e1_b.jp',
+      'isImage': true,
+      'url': 'https://c1.staticflickr.com/4/3011/2929036588_8f7a7490e1_b.jpg',
+      'id': 2
+   }
+  ]
+});
+
+
+$('#example_edit_album_form').on('submit',function (e) {
+  e.preventDefault();
+  var data = normalizeSerializeArray($(this).serializeArray());
+  var mrFileUploaderData = $('#demo17').data('getRequestData')();
+  $.each(data, function (name,value) {
+     mrFileUploaderData.append(name,value)
+  });
+  $.ajax({
+    'url': 'http://example.com/edit_album.php',
+    'type': 'POST',
+    'data': mrFileUploaderData,
+    'dataType': 'JSON',
+    'contentType': false,
+    'processData': false,
+    'success': function (result) {
+      // some code after save
+    }
+  });
+
+});
+
+/**
+ * Normalize serialize array to format [ {name: value}, ... ]
+ * @param serializeArray
+ * @return {{}}
+ */
+function normalizeSerializeArray (serializeArray) {
+  var result = {};
+  $.each(serializeArray, function (index, item) {
+    if (typeof result[item.name] !== 'undefined'
+          && typeof result[item.name] !== 'object') {
+          var tmp = result[item.name];
+          result[item.name] = [];
+          result[item.name].push(tmp);
+          result[item.name].push(item.value);
+        } else if (typeof result[item.name] === 'object') {
+          result[item.name].push(item.value);
+        } else if (typeof result[item.name] === 'undefined') {
+          result[item.name] = item.value;
+        }
+      });
+      return result;
+    }
+</code></pre>
+            </div>
+
+        </form>
+
+    </section>
+    <!--=======================================================================-->
 
 </div>
 
@@ -326,73 +937,160 @@ $('#demo1').mrUploadFileButton({
 
     $('#demo2').mrUploadFileButton({
       'preview': true,
-      'disabledDragArea': true
+      'disableDragArea': true
     });
 
     $('#demo3').mrUploadFileButton({
-      'preview': true
+      'preview': true,
+      'clickableAllArea': true
     });
 
-  });
-</script>
+    $('#demo4').mrUploadFileButton({
+      'preview': true,
+      'btnClass': 'hidden', // css class .hidden{ display:none }
+      'clickableAllArea': true // only use when you hide `select button` (for mobile device)
+    });
 
+    $('#demo5').mrUploadFileButton({
+      'preview': true,
+      'allowedTypes': 'image/*' // only image
+    });
 
-<script>
-  $(document).ready(function () {
-    function setUrl (stringParams) {
-      if (history.pushState) {
-        var newurl = window.location.protocol + '//' + window.location.host + window.location.pathname + stringParams;
-        window.history.pushState({ path: newurl }, '', newurl);
-      }
-    }
-
-    function setActiveMenuItem () {
-      if (window.location.hash && window.location.hash !== '#') {
-        var selector = 'a[href="' + window.location.hash + '"]';
-        if ($(selector).length) {
-
-          if ($(selector).parents('.dropdown:eq(0)').length) {
-            $('#navbar .active').removeClass('active');
-            $(selector).parents('.dropdown:eq(0)').addClass('active');
-            $(selector).parents('li:eq(0)').addClass('active');
-          } else {
-            $('#navbar .active').removeClass('active');
-            $(selector).parents('li:eq(0)').addClass('active');
-          }
+    $('#demo6').mrUploadFileButton({
+      'preview': true,
+      'disableNotification': true, // disabled default notification
+      'allowedTypes': 'image/*' // only image
+    })
+      .on('mr:fileUpload:getError',function(event, code, message, typeError){
+        if(typeError !== 'ajaxError'){
+          MsgError(message,5000,0)
         }
-      } else {
-        $('#navbar .active').removeClass('active');
-        $('a[href^=\'#home\']').parents('li:eq(0)').addClass('active');
-      }
-    }
+      })
+      .on('mr:fileUpload:getWarning',function(event, code, message){
+        MsgWarning(message,5000,0)
+      })
+      .on('mr:fileUpload:ajaxDone', function (event, data, textStatus, errorThrown) {
+        if(data && data.status === 'ok'){
+          MsgSuccess(data && data.message ? data.message : 'Successful uploaded',5000,0)
+        }else{
+          MsgError(data && data.message ? data.message : 'An error occurred!',5000,0)
+        }
+      })
+      .on('mr:fileUpload:ajaxError', function (event, jqXHR, textStatus, errorThrown) {
+        MsgError('<strong>Error ' + jqXHR.status + ' : </strong>: ' + textStatus,5000,0)
+      });
 
-    $('a[href^=\'#\']').on('click', function (e) {
+
+    $('#demo7').mrUploadFileButton({
+      'preview': true,
+      'disablePreloader': true // disabled default notification
+    })
+      .on('mr:fileUpload:ajaxBeforeSend', function (event, jqXHR, PlainObject) {
+        $('#loading').show();
+      })
+      .on('mr:fileUpload:ajaxComplete', function (event, jqXHR, textStatus) {
+        setTimeout(function () { // Use setTimeout for demo show
+          $('#loading').hide();
+        },2000)
+      });
+
+    $('#demo16').mrUploadFileButton({
+      'preview': true,
+      'uploadUrl': 'http://aff-platform.o-boyko.rtbadnt.com/uploads/ajax.php?sleep=1',
+      'maxFilesUpload':1,
+      'previewImageUrls': [
+        {
+          'fileName': 'apple-7.jpg',
+          'isImage': true,
+          'url': 'https://i2.wp.com/www.thebrandbite.com/wp-content/media/2015/07/apple-7.jpg',
+          'id': 1
+        },
+        {
+          'fileName': '2929036588_8f7a7490e1_b.jp',
+          'isImage': true,
+          'url': 'https://c1.staticflickr.com/4/3011/2929036588_8f7a7490e1_b.jpg',
+          'id': 2
+        },
+        {
+          'fileName': 'Eloquent_JavaScript.pdf',
+          'isImage': false,
+          'url': 'http://eloquentjavascript.net/Eloquent_JavaScript.pdf',
+          'id': 3
+        }
+      ]
+    });
+
+    $('#demo17').mrUploadFileButton({
+      'preview': true,
+      'uploadBtnCssClass': 'hidden',// css class .hidden{ display:none }
+      'clickableAllArea': true, // only use when you hide `select button` (for mobile device)
+      'requestParamDeletedIds': 'myDeletedFileID',
+      'requestParamFiles': 'myFiles',
+      'requestParamSortingData': 'mySortingData',
+      'previewImageUrls': [
+        {
+          'fileName': 'apple-7.jpg',
+          'isImage': true,
+          'url': 'https://i2.wp.com/www.thebrandbite.com/wp-content/media/2015/07/apple-7.jpg',
+          'id': 1
+        },
+        {
+          'fileName': '2929036588_8f7a7490e1_b.jp',
+          'isImage': true,
+          'url': 'https://c1.staticflickr.com/4/3011/2929036588_8f7a7490e1_b.jpg',
+          'id': 2
+        }
+      ]
+    });
+
+    $('#example_edit_album_form').on('submit',function (e) {
       e.preventDefault();
-      var $this = $(this);
-
-      if ($this.parents('#navbar').length && $this.attr('href')) {
-        if ($this.parents('.dropdown:eq(0)').length) {
-          if (!$this.hasClass('dropdown-toggle')) {
-            $this.parents('#navbar').find('.active').removeClass('active');
-            $this.parents('.dropdown:eq(0)').addClass('active');
-            $this.parents('li:eq(0)').addClass('active');
-            setUrl($this.attr('href'));
-          }
-        } else {
-          $this.parents('#navbar').find('.active').removeClass('active');
-          $this.parents('li:eq(0)').addClass('active');
-          setUrl($this.attr('href'));
+      var data = normalizeSerializeArray($(this).serializeArray());
+      var mrFileUploaderData = $('#demo17').data('getRequestData')();
+      $.each(data, function (name,value) {
+        mrFileUploaderData.append(name,value)
+      });
+      $.ajax({
+        'url': 'http://example.com/edit_album.php',
+        'type': 'POST',
+        'data': mrFileUploaderData,
+        'dataType': 'JSON',
+        'contentType': false,
+        'processData': false,
+        'success': function (result) {
+          // some code after save
         }
-      }
-      if ($($.attr(this, 'href')).length) {
-        $('html, body').animate({
-          scrollTop: $($.attr(this, 'href')).offset().top
-        }, 500);
-      }
+      });
+
     });
-    setActiveMenuItem();
+
+    /**
+     * Normalize serialize array to format [ {name: value}, ... ]
+     * @param serializeArray
+     * @return {{}}
+     */
+    function normalizeSerializeArray (serializeArray) {
+      var result = {};
+      $.each(serializeArray, function (index, item) {
+        if (typeof result[item.name] !== 'undefined'
+          && typeof result[item.name] !== 'object') {
+          var tmp = result[item.name];
+          result[item.name] = [];
+          result[item.name].push(tmp);
+          result[item.name].push(item.value);
+        } else if (typeof result[item.name] === 'object') {
+          result[item.name].push(item.value);
+        } else if (typeof result[item.name] === 'undefined') {
+          result[item.name] = item.value;
+        }
+      });
+      return result;
+    }
+
   });
 </script>
+
+<script src="docs/js/index.js"></script>
 
 </body>
 </html>
