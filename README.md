@@ -8,7 +8,7 @@
   - [Attributes](docs/attributes.md)
   - [Events](docs/events.md)
   - [Functions](docs/functions.md)
-- [Demos (examples)]()
+- [Demos (examples)](https://mackrais.github.io/mr-upload-file-button/)
 - [License](LICENSE.md)
 
 ## Installation
