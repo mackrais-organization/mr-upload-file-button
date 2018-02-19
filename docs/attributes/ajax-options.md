@@ -22,20 +22,20 @@ Base info current attribute
 This attribute is intended to specify the parameters jquery ajax request. 
 You can see a list of all available options [here](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings). 
 But there are also exceptions:
-- url - see attribute [uploadUrl](btn-class-title.md)
+- url - see attribute [uploadUrl](upload-url.md)
 - data - default format data see [Request](#request-data)
 - type - **only POST**
 - contentType - **false**
 - processData - **false**
-- beforeSend - see event [mr:fileUpload:ajaxBeforeSend]()
-- success - see event [mr:fileUpload:ajaxDone]()
-- error - see event [mr:fileUpload:ajaxError]()
-- complete - see event [mr:fileUpload:ajaxComplete]()
+- beforeSend - see event [mr:fileUpload:ajaxBeforeSend](/docs/events/ajax-before-send.md)
+- success - see event [mr:fileUpload:ajaxDone](/docs/events/ajax-done.md)
+- error - see event [mr:fileUpload:ajaxError](/docs/events/ajax-error.md)
+- complete - see event [mr:fileUpload:ajaxComplete](/docs/events/ajax-complete.md)
 
 ## Request data
 Format request post data, where 
-- requestParamDeletedIDs - name from options see [requestParamDeletedIDs]()
-- requestParamSortingData - name from options see [requestParamSortingData]()
+- requestParamDeletedIDs - name from options see [requestParamDeletedIDs](request-param-deleted-ids.md)
+- requestParamSortingData - name from options see [requestParamSortingData](request-param-sorting-data.md)
 
 ```
   [requestParamDeletedIDs] => 2
@@ -72,7 +72,7 @@ Format request post data, where
 ```
 
 Format request file data , where 
-- requestParamFile - name from options see [requestParamFile]()
+- requestParamFiles - name from options see [requestParamSortingData](request-param-files.md)
 
 ```
   [requestParamFile] => Array
@@ -98,7 +98,7 @@ Default response data include the following elements:
   'message': 'Server error!',
 }
 ```
-Also you can create custom response used event [mr:fileUpload:ajaxDone]() see [demo custom response]()
+Also you can create custom response used event [mr:fileUpload:ajaxDone](/docs/events/ajax-done.md) 
 
 ## How to use
 ```js
@@ -112,7 +112,7 @@ Also you can create custom response used event [mr:fileUpload:ajaxDone]() see [d
 ```
 
 ## Demo
-[link to demo]()
+[link to demo](https://mackrais.github.io/mr-upload-file-button/#use_in_custom_form_example)
 
 ## License
 
