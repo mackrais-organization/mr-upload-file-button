@@ -45,7 +45,7 @@ Or use html data-attributes
 
 
 ## Demo
-[link to demo]()
+[link to demo](https://mackrais.github.io/mr-upload-file-button/#just_drag_and_drop_example)
 
 ## License
 
