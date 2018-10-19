@@ -299,6 +299,9 @@ if (typeof mrDebugMode === 'undefined') {
      * @param data
      */
     function preapareDataAttibutes (data) {
+      if(typeof data === 'undefined'){
+          return false;
+      }
       if (data.ajaxOptions) {
         delete data.ajaxOptions;
       }
