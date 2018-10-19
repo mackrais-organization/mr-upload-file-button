@@ -1174,5 +1174,7 @@ if (typeof mrDebugMode === 'undefined') {
 })(jQuery);
 
 $(document).ready(function () {
-  $('[data-mr-upload-file-button="true"]').mrUploadFileButton();
+  if($('[data-mr-upload-file-button="true"]').length){
+     $('[data-mr-upload-file-button="true"]').mrUploadFileButton();
+  }
 });
